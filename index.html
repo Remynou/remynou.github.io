@@ -142,8 +142,17 @@ section > .col > h2{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:800;line-he
 .par span{color:var(--discret);display:block;margin-top:.2rem}
 
 /* contact */
-.contact h2{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:800;line-height:1;margin:0 0 1.8rem;letter-spacing:-.03em;color:var(--texte)}
-.contact h2 .ital{font-style:italic;background:var(--degrade);-webkit-background-clip:text;background-clip:text;color:transparent}
+.contact h2{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:800;line-height:1.18;margin:0 0 1.8rem;letter-spacing:-.03em;color:var(--texte)}
+.contact h2 .ital{
+  font-style:italic;
+  background:var(--degrade);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  display:inline-block;
+  padding:0.04em 0.25em 0.18em 0.04em;
+  vertical-align:bottom;
+}
 .cl li{border-top:1px solid var(--bordure)}
 .cl li:last-child{border-bottom:1px solid var(--bordure)}
 .cl a{display:grid;grid-template-columns:7.5rem 1fr;gap:1.2rem;padding:1.15rem 0;text-decoration:none;font-size:1.05rem;font-weight:500}

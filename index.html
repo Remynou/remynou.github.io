@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rémy Rayane, data engineer & data scientist</title>
+<meta name="description" content="Data engineer et data scientist à Lille. Architecture de données, Snowflake, SQL, pipelines ETL/ELT, machine learning et mise en production. CV, projets et contact.">
+<meta name="theme-color" content="#070A17">
+<meta property="og:title" content="Rémy Rayane, data engineer & data scientist">
+<meta property="og:description" content="Architecture de données, Snowflake, pipelines ETL/ELT, machine learning et mise en production. CV, projets et contact.">
+<meta property="og:type" content="profile">
+<link rel="preload" href="fonts/InstrumentSerif-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/InstrumentSans-normal-400_700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A17'/><text x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='19' fill='%239D7BFF' text-anchor='middle'>R</text></svg>">
+<style>
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/InstrumentSerif-normal-400.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/InstrumentSerif-italic-400.woff2') format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/InstrumentSans-normal-400_700.woff2') format('woff2')}
+
+:root{
+  --nuit:#070A17; --encre:#0E1330; --voile:rgba(150,165,255,.16); --voile-fort:rgba(150,165,255,.32);
+  --texte:#EEF0FA; --attenue:#9AA3C7; --discret:#7B85AE;
+  --bleu:#5D7CFF; --pervenche:#9D7BFF; --mauve:#C79CFF;
+  --degrade:linear-gradient(100deg,var(--bleu) 0%,var(--pervenche) 55%,var(--mauve) 100%);
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Instrument Sans',Helvetica,Arial,sans-serif;
+  --col:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nuit);color:var(--texte);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+@media(min-width:900px){body{font-size:1.0625rem}}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 45% at 8% 0%,rgba(93,124,255,.22),transparent 70%),
+    radial-gradient(45% 40% at 96% 12%,rgba(199,156,255,.16),transparent 70%),
+    radial-gradient(70% 50% at 50% 110%,rgba(157,123,255,.10),transparent 70%)}
+.col{position:relative;z-index:1;max-width:var(--col);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+a{color:inherit;text-decoration-color:var(--voile-fort);text-underline-offset:.18em}
+a:hover{text-decoration-color:var(--mauve)}
+:focus-visible{outline:2px solid var(--pervenche);outline-offset:4px}
+h1,h2,h3,.chiffre,.ital{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+/* barre de navigation */
+.barre{position:sticky;top:0;z-index:20;background:rgba(7,10,23,.82);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--voile)}
+.barre .col{display:flex;align-items:center;gap:1.5rem;height:60px}
+.marque{font-family:var(--serif);font-style:italic;font-size:1.25rem;text-decoration:none}
+.liens{display:none;gap:1.6rem;margin-left:auto;font-size:.93rem;color:var(--attenue)}
+.liens a{text-decoration:none}
+.liens a:hover{color:var(--texte)}
+@media(min-width:900px){.liens{display:flex}}
+.cv-b{margin-left:.15rem;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--nuit);background:var(--texte);padding:.5rem 1.05rem;border-radius:999px;white-space:nowrap;transition:background .15s ease}
+.cv-b:hover{background:#fff}
+@media(min-width:900px){.liens{margin-left:auto}.bascule{margin-left:.4rem}}
+
+/* hero */
+.hero{padding:clamp(3.2rem,9vw,7rem) 0 clamp(2.4rem,5vw,4rem)}
+.hero h1{font-size:clamp(3.4rem,13vw,9.5rem);line-height:.9;margin:0 0 .35em;letter-spacing:-.025em}
+.sous{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4.6vw,3rem);line-height:1.1;margin:0 0 1.6rem;
+      background:var(--degrade);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;padding-right:.15em}
+.deux{display:grid;gap:2rem}
+@media(min-width:900px){.deux{grid-template-columns:7fr 5fr;gap:4rem;align-items:end}}
+.lede{font-size:clamp(1.05rem,1.6vw,1.2rem);line-height:1.55;max-width:62ch;color:var(--texte)}
+.lede + .lede{margin-top:1rem;color:var(--attenue)}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.b{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:600;font-size:.98rem;padding:.85rem 1.35rem;border-radius:999px;border:1px solid transparent;transition:all .15s ease}
+.b-1{background:var(--texte);color:var(--nuit)}
+.b-2{border-color:var(--voile-fort);color:var(--texte)}
+.b-1:hover{background:#fff}.b-2:hover{border-color:var(--mauve)}
+.faits{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--voile)}
+.faits div{padding:1.1rem 0 1.1rem;border-bottom:1px solid var(--voile)}
+.faits div:nth-child(odd){padding-right:1.2rem;border-right:1px solid var(--voile)}
+.faits div:nth-child(even){padding-left:1.2rem}
+.chiffre{font-size:clamp(1.9rem,3vw,2.5rem);line-height:1;display:block;margin-bottom:.35rem;font-variant-numeric:tabular-nums}
+.faits small{font-size:.86rem;color:var(--attenue);line-height:1.35;display:block}
+
+/* animation apparition */
+.rv{opacity:0;transform:translateY(14px);animation:rv .9s cubic-bezier(.2,.7,.2,1) forwards}
+.rv:nth-child(2){animation-delay:.12s}.rv:nth-child(3){animation-delay:.24s}
+.deux.rv{animation-delay:.36s}
+@keyframes rv{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.rv{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* sections */
+section{padding:clamp(3.4rem,7vw,6rem) 0 0;border-top:1px solid var(--voile)}
+section > .col > h2{font-size:clamp(2.1rem,4.8vw,3.4rem);line-height:1.05;margin:0 0 .5rem}
+.intro{color:var(--attenue);max-width:62ch;margin:0 0 clamp(2rem,4vw,3rem)}
+
+/* compétences */
+.reg{border-top:1px solid var(--voile)}
+.reg > div{display:grid;gap:.6rem;padding:1.5rem 0;border-bottom:1px solid var(--voile)}
+@media(min-width:900px){.reg > div{grid-template-columns:4fr 8fr;gap:3rem;padding:2rem 0}}
+.reg h3{font-size:clamp(1.5rem,2.4vw,1.95rem);line-height:1.15;margin:0}
+.reg p{color:var(--attenue);max-width:70ch}
+.reg p b{color:var(--texte);font-weight:500}
+.reg p + p{margin-top:.55rem}
+
+/* dossiers */
+.dossier{display:grid;gap:1.6rem;padding:clamp(2.2rem,4.5vw,3.6rem) 0;border-bottom:1px solid var(--voile)}
+.dossier:last-child{border-bottom:0}
+@media(min-width:900px){.dossier{grid-template-columns:5fr 7fr;gap:4rem}.dossier > .g{position:sticky;top:5rem;align-self:start}}
+.dossier h3{font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.08;margin:0 0 .5rem}
+.dossier h3 a{text-decoration:none}
+.dossier h3 a:hover{text-decoration:underline;text-decoration-color:var(--mauve)}
+.ctx{color:var(--attenue);margin:0 0 1.4rem;max-width:44ch}
+.met{display:grid;grid-template-columns:1fr 1fr;gap:0 1.4rem;border-top:1px solid var(--voile);margin:0}
+.met > div{padding:.9rem 0;border-bottom:1px solid var(--voile)}
+.met dd{margin:0}
+.met .chiffre{font-size:clamp(1.7rem,2.4vw,2.2rem);margin-bottom:.25rem}
+.met small{font-size:.84rem;color:var(--attenue);line-height:1.35;display:block}
+.faits-l{border-top:1px solid var(--voile)}
+.faits-l li{padding:.95rem 0;border-bottom:1px solid var(--voile);color:var(--attenue);max-width:70ch}
+.faits-l li b{color:var(--texte);font-weight:500}
+.pile{margin-top:1rem;font-size:.9rem;color:var(--discret)}
+.pile b{font-weight:500;color:var(--attenue)}
+
+/* parcours */
+.par{display:grid;gap:2.4rem}
+@media(min-width:900px){.par{grid-template-columns:1fr 1fr;gap:4rem}}
+.par h3{font-size:1.6rem;margin:0 0 .6rem}
+.par li{padding:1rem 0;border-top:1px solid var(--voile);display:grid;grid-template-columns:7.2rem 1fr;gap:1rem}
+.par li:last-child{border-bottom:1px solid var(--voile)}
+.par time{color:var(--discret);font-size:.9rem;padding-top:.15rem;font-variant-numeric:tabular-nums}
+.par b{font-weight:600;display:block}
+.par span{color:var(--attenue);display:block}
+
+/* contact */
+.contact h2{font-size:clamp(2.6rem,7vw,5.5rem);line-height:.95;margin:0 0 1.6rem}
+.contact h2 .ital{font-style:italic;background:var(--degrade);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cl li{border-top:1px solid var(--voile)}
+.cl li:last-child{border-bottom:1px solid var(--voile)}
+.cl a{display:grid;grid-template-columns:7.2rem 1fr;gap:1rem;padding:1.05rem 0;text-decoration:none;font-size:1.05rem}
+.cl a span:first-child{color:var(--discret)}
+.cl a:hover span:last-child{text-decoration:underline;text-decoration-color:var(--mauve)}
+footer{padding:2.4rem 0 3rem;color:var(--discret);font-size:.88rem;display:flex;flex-wrap:wrap;gap:.4rem 2rem}
+
+/* bascule lecture rapide (CSS pur sans JS) */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.bascule{display:inline-flex;align-items:center;gap:.5rem;margin-left:auto;font-size:.86rem;color:var(--attenue);cursor:pointer;
+  user-select:none;border:1px solid var(--voile);border-radius:999px;padding:.4rem .85rem .4rem .6rem;white-space:nowrap}
+.bascule .pt{width:.55rem;height:.55rem;border-radius:50%;background:var(--voile-fort)}
+#rapide:checked + .bascule .pt{background:var(--pervenche);box-shadow:0 0 0 3px rgba(157,123,255,.25)}
+#rapide:checked + .bascule{color:var(--texte);border-color:var(--voile-fort)}
+#rapide:focus-visible + .bascule{outline:2px solid var(--pervenche);outline-offset:3px}
+.bascule .on,#rapide:checked + .bascule .off{display:none}
+#rapide:checked + .bascule .on{display:inline}
+.plus-l{display:none}
+body:has(#rapide:checked) .plus-l{display:inline-flex;align-items:center;margin-top:1.2rem;font-size:.92rem;color:var(--texte);cursor:pointer;
+  border-bottom:1px solid var(--voile-fort);padding-bottom:.1rem}
+body:has(#rapide:checked) .plus-l:hover{border-color:var(--mauve)}
+body:has(#rapide:checked) .dossier > .detail{display:none}
+body:has(#rapide:checked) .dossier:has(.plus:checked) > .detail{display:block}
+body:has(#rapide:checked) .dossier{grid-template-columns:1fr;gap:1.1rem}
+body:has(#rapide:checked) .dossier > .g{position:static}
+.plus:checked ~ .plus-l .off,.plus:not(:checked) ~ .plus-l .on{display:none}
+.plus:focus-visible ~ .plus-l{outline:2px solid var(--pervenche);outline-offset:3px}
+
+/* compteurs animés et apparition au scroll */
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+.chiffre b{font-weight:inherit}
+@supports (animation-timeline: view()){
+ @media (prefers-reduced-motion:no-preference){
+  .cpt > b{display:none}
+  .cpt{counter-reset:n var(--n)}
+  .cpt::after{content:attr(data-pre) counter(n) attr(data-suf)}
+  .cpt.z2::after{content:attr(data-pre) counter(n,decimal-leading-zero) attr(data-suf)}
+  .cpt{animation:cpt linear both;animation-timeline:view();animation-range:entry 0px entry 340px}
+  .cpt-h{animation:cpt 1.3s cubic-bezier(.2,.7,.2,1) .5s both;animation-timeline:auto;animation-range:normal}
+  @keyframes cpt{from{--n:0}}
+  .reg > div,.dossier,.par li,.cl li{animation:app linear both;animation-timeline:view();animation-range:entry 0px entry 260px}
+  @keyframes app{from{opacity:0;transform:translateY(18px)}}
+ }
+}
+
+.lk{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--voile);color:var(--attenue);text-decoration:none;flex:none;transition:all .15s ease}
+.lk:hover{color:var(--texte);border-color:var(--mauve)}
+@media(max-width:480px){.marque{display:none}.barre .col{gap:.6rem}.bascule{padding:.38rem .7rem .38rem .55rem}}
+</style>
+</head>
+<body>
+
+<div class="barre"><div class="col">
+  <a class="marque" href="#haut">Rémy Rayane</a>
+  <nav class="liens">
+    <a href="#competences">Compétences</a>
+    <a href="#experiences">Expériences</a>
+    <a href="#projets">Projets</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <input type="checkbox" id="rapide" class="vh"><label for="rapide" class="bascule"><span class="pt"></span><span class="off">Lecture rapide</span><span class="on">Lecture complète</span></label>
+  <a class="lk" href="https://www.linkedin.com/in/r%C3%A9my-rayane-57a71a252/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn de Rémy Rayane" title="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  <a class="lk" href="https://github.com/Remynou" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub de Rémy Rayane" title="GitHub"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+  <a class="cv-b" href="CV_Remy.pdf" target="_blank">Le CV</a>
+</div></div>
+
+<header class="hero" id="haut"><div class="col">
+  <h1 class="rv">Rémy Rayane</h1>
+  <p class="sous rv">Data engineer <span style="font-style:normal">&amp;</span> Data scientist</p>
+  <div class="deux rv">
+    <div>
+      <p class="lede">Bientôt diplômé d'un Master 2 Data &amp; IA, je conçois, développe et industrialise des architectures décisionnelles, des pipelines ETL/ELT et des modèles de machine learning appliqués au décisionnel et à l'industrie.</p>
+      <p class="lede">Une rigueur constante : pipelines testés et reproductibles, modélisation performante sous Snowflake et SQL Server, intégration continue (CI/CD). Basé à Lille, mobile dans toute la France.</p>
+      <div class="actions">
+        <a class="b b-1" href="CV_Remy.pdf" target="_blank">Consulter le CV (PDF)</a>
+        <a class="b b-2" href="https://github.com/Remynou?tab=repositories" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub</a>
+      </div>
+    </div>
+    <div class="faits">
+      <div><span class="chiffre cpt cpt-h" style="--n:2" data-pre="" data-suf=" ans"><b>2 ans</b></span><small>d'expérience en alternance (Crédit Agricole, Tronics Microsystem)</small></div>
+      <div><span class="chiffre cpt cpt-h" style="--n:45" data-pre="" data-suf=" bâtiments"><b>45 bâtiments</b></span><small>connectés cartographiés et modélisés pour l'optimisation énergétique (PRISMA)</small></div>
+      <div><span class="chiffre cpt z2 cpt-h" style="--n:943" data-pre="0," data-suf=""><b>0,943</b></span><small>score ROC-AUC en classification supervisée de variants (ClinVar)</small></div>
+      <div><span class="chiffre cpt cpt-h" style="--n:100" data-pre="" data-suf=" %"><b>100 %</b></span><small>pipelines industrialisés avec tests, validation et déploiement continu CI/CD</small></div>
+    </div>
+  </div>
+</div></header>
+
+<section id="competences"><div class="col">
+  <h2>Ce que je sais faire</h2>
+  <p class="intro">Les outils et méthodologies sont listés parce qu'ils ont servi sur des projets réels en production et en recherche.</p>
+  <div class="reg">
+    <div>
+      <h3>Data Engineering &amp; Architecture</h3>
+      <div>
+        <p><b>Pipelines ETL/ELT.</b> Conception, orchestration, automatisation et industrialisation de flux de données massifs pour le décisionnel.</p>
+        <p><b>Data Warehousing &amp; Modélisation.</b> Modélisation dimensionnelle (étoile, flocon), requêtes analytiques complexes, gouvernance des données. Snowflake, SQL Server, MySQL.</p>
+        <p><b>Industrialisation &amp; CI/CD.</b> Recettes techniques, rédaction de tests fonctionnels, automatisation des déploiements (CI/CD), Git, conteneurisation Docker.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Machine Learning &amp; Data Science</h3>
+      <div>
+        <p><b>Apprentissage supervisé &amp; Arbres.</b> Random Forest, XGBoost, LightGBM, régression logistique, SVM, Scikit-Learn.</p>
+        <p><b>Préparation &amp; Feature Engineering.</b> Nettoyage de volumétries massives, encodage catégoriel, traitement des déséquilibres de classes, mécanismes de données manquantes (MCAR, MAR, MNAR).</p>
+        <p><b>Évaluation &amp; Validation.</b> Validation croisée stratifiée, métriques F1-score, ROC-AUC, matrice de confusion, analyse des courbes de précision-rappel.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Intelligence Artificielle &amp; NLP</h3>
+      <div>
+        <p><b>NLP &amp; Extraction textuelle.</b> Tokenization, filtrage sémantique, classification documentaire, modèles de langage appliqués aux corpus techniques (PRISMA).</p>
+        <p><b>Architectures modernes.</b> Méthode RAG (Retrieval-Augmented Generation), recherche hybride, intégration d'Agents IA pour l'aide à la décision.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Développement Logiciel &amp; Outils</h3>
+      <div>
+        <p><b>Langages.</b> Python (Pandas, NumPy, Scikit-Learn), SQL, C#, VBA, R, SAS, HTML, CSS.</p>
+        <p><b>Outils &amp; Écosystème.</b> Blazor, SQL Server Management Studio (SSMS), Tableau, Power BI, Shiny, RStudio, Linux.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Méthodologie &amp; Soft Skills</h3>
+      <div>
+        <p><b>Organisation &amp; Rigueur.</b> Sens du détail, apprentissage autonome, documentation technique rigoureuse.</p>
+        <p><b>Communication &amp; Équipe.</b> Travail collaboratif, méthodologies agiles, interaction transverse entre équipes métiers et informatiques.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="experiences"><div class="col">
+  <h2>En production &amp; industrie</h2>
+  <p class="intro">Chaque expérience a été menée en environnement professionnel exigeant, du secteur bancaire décisionnel à l'industrie de haute technologie.</p>
+
+  <article class="dossier">
+    <div class="g">
+      <h3>Data Engineer</h3>
+      <p class="ctx">Crédit Agricole — Roubaix (Secteur Bancaire &amp; Décisionnel). Alternance, Septembre 2025 à Aujourd'hui.</p>
+      <dl class="met">
+        <div><dt class="chiffre">Snowflake</dt><dd><small>data cloud décisionnel et optimisation des requêtes</small></dd></div>
+        <div><dt class="chiffre">CI/CD</dt><dd><small>déploiement automatisé et continu des usages DATA</small></dd></div>
+        <div><dt class="chiffre cpt" style="--n:100" data-pre="" data-suf=" %"><b>100 %</b></dt><dd><small>flux décisionnels testés et validés avant mise en production</small></dd></div>
+        <div><dt class="chiffre">Transverse</dt><dd><small>collaboration étroite entre équipes métiers et informatiques</small></dd></div>
+      </dl>
+      <input type="checkbox" id="e1" class="vh plus"><label for="e1" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Pipelines de données.</b> Conception, développement et industrialisation de pipelines de données (ETL/ELT) pour alimenter les cas d'usage métiers décisionnels.</li>
+        <li><b>Recette et déploiement.</b> Réalisation des recettes techniques, rédaction des tests fonctionnels et déploiement continu (CI/CD) des flux DATA en production sécurisée.</li>
+        <li><b>Performance analytique.</b> Modélisation de données décisionnelles et optimisation des performances de requêtes analytiques complexes sous Snowflake.</li>
+        <li><b>Gouvernance.</b> Collaboration transverse avec les équipes métiers et informatiques pour assurer la fiabilité, la traçabilité et la qualité des données.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> Snowflake, SQL, CI/CD, Python, Data Governance.</p>
+    </div>
+  </article>
+
+  <article class="dossier">
+    <div class="g">
+      <h3>IT Production Engineer</h3>
+      <p class="ctx">Tronics Microsystem — Crolles (Industrie Semi-conducteurs / MEMS). Alternance, Septembre 2024 à Juillet 2025.</p>
+      <dl class="met">
+        <div><dt class="chiffre">Full-stack</dt><dd><small>outils logiciels internes développés en C#, Blazor et Python</small></dd></div>
+        <div><dt class="chiffre">SQL Server</dt><dd><small>bases de données relationnelles assurant la traçabilité complète</small></dd></div>
+        <div><dt class="chiffre cpt" style="--n:100" data-pre="" data-suf=" %"><b>100 %</b></dt><dd><small>des lots de fabrication suivis avec indicateurs de rendement</small></dd></div>
+        <div><dt class="chiffre">Temps réel</dt><dd><small>automatisation des flux d'extraction de données capteurs</small></dd></div>
+      </dl>
+      <input type="checkbox" id="e2" class="vh plus"><label for="e2" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Développement applicatif.</b> Développement d'outils logiciels full-stack (C#, Blazor, Python) dédiés au pilotage, à la surveillance et au contrôle qualité des ateliers de fabrication MEMS.</li>
+        <li><b>Bases de données de production.</b> Conception, modélisation, déploiement et administration des bases de données relationnelles de production sous SQL Server.</li>
+        <li><b>Extraction capteurs &amp; KPI.</b> Automatisation des flux d'extraction de données capteurs et consolidation des indicateurs clés de performance industrielle (KPI).</li>
+        <li><b>Support procédé.</b> Amélioration continue de la traçabilité des lots et support technique auprès des ingénieurs procédés et opérateurs.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> C#, Blazor, SQL Server, Python, Traçabilité industrielle.</p>
+    </div>
+  </article>
+
+  <article class="dossier">
+    <div class="g">
+      <h3>Stagiaire Développeur Bases de Données</h3>
+      <p class="ctx">Becton Dickinson — Pont de Claix (Dispositifs Médicaux &amp; Santé). Stage, Avril 2023 à Juin 2023.</p>
+      <dl class="met">
+        <div><dt class="chiffre cpt" style="--n:1" data-pre="" data-suf=""><b>1</b></dt><dd><small>solution interne centralisée conçue et déployée</small></dd></div>
+        <div><dt class="chiffre">VBA / SQL</dt><dd><small>modélisation relationnelle et automatisation des flux de saisie</small></dd></div>
+      </dl>
+      <input type="checkbox" id="e3" class="vh plus"><label for="e3" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Centralisation des données.</b> Conception, développement et déploiement d'une application interne de gestion et de centralisation de bases de données.</li>
+        <li><b>Automatisation des flux.</b> Automatisation des flux de saisie, fiabilisation du stockage et structuration des processus de reporting opérationnel.</li>
+        <li><b>Interface utilisateur.</b> Création d'interfaces utilisateurs intuitives facilitant la saisie et le suivi quotidien par les équipes de contrôle qualité.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> VBA, SQL, Modélisation relationnelle, Reporting opérationnel.</p>
+    </div>
+  </article>
+</div></section>
+
+<section id="projets"><div class="col">
+  <h2>Projets techniques &amp; recherche</h2>
+  <p class="intro">Travaux universitaires et projets open source publiés sur GitHub : code, méthodologie et résultats.</p>
+
+  <article class="dossier">
+    <div class="g">
+      <h3><a href="https://github.com/Remynou/variants-genetiques-ml" target="_blank" rel="noopener noreferrer">Classification de variants génétiques</a></h3>
+      <p class="ctx">Données ClinVar. Classification supervisée pour évaluer la pathogénicité et le statut conflictuel des variants génétiques.</p>
+      <dl class="met">
+        <div><dt class="chiffre cpt z2" style="--n:943" data-pre="0," data-suf=""><b>0,943</b></dt><dd><small>score ROC-AUC obtenu avec XGBoost sur jeu de test isolé</small></dd></div>
+        <div><dt class="chiffre cpt" style="--n:28546" data-pre="" data-suf=""><b>28 546</b></dt><dd><small>variants annotés et traités à label clinique fiable</small></dd></div>
+        <div><dt class="chiffre cpt" style="--n:8" data-pre="" data-suf=""><b>8</b></dt><dd><small>modèles comparés par validation croisée stratifiée</small></dd></div>
+        <div><dt class="chiffre">MNAR</dt><dd><small>traitement rigoureux du mécanisme des valeurs manquantes</small></dd></div>
+      </dl>
+      <input type="checkbox" id="p1" class="vh plus"><label for="p1" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Données cliniques.</b> Croisement de bases génomiques et cliniques issues du NCBI ClinVar pour constituer un corpus d'apprentissage robuste.</li>
+        <li><b>Préparation rigoureuse.</b> Analyse des mécanismes de valeurs manquantes (MNAR), encodage catégoriel, et feature engineering ciblé sur les fréquences alléliques.</li>
+        <li><b>Modélisation &amp; Benchmark.</b> Entraînement et comparaison d'algorithmes (Random Forest, XGBoost, LightGBM, régression logistique) avec protocole strict de validation croisée.</li>
+        <li><b>Optimisation de la décision.</b> Sélection de seuils de classification favorisant la sensibilité afin de minimiser le risque de faux négatifs en diagnostic clinique.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> Python, Scikit-Learn, Pandas, XGBoost, ClinVar.</p>
+    </div>
+  </article>
+
+  <article class="dossier">
+    <div class="g">
+      <h3><a href="https://github.com/Remynou/prisma-digital-twins-smart-buildings" target="_blank" rel="noopener noreferrer">Jumeaux Numériques &amp; Smart Buildings (PRISMA)</a></h3>
+      <p class="ctx">Revue systématique et modélisation pour l'optimisation énergétique des bâtiments intelligents (Université Catholique de Lille).</p>
+      <dl class="met">
+        <div><dt class="chiffre cpt" style="--n:45" data-pre="" data-suf=""><b>45</b></dt><dd><small>études et bâtiments connectés inclus dans la cartographie finale</small></dd></div>
+        <div><dt class="chiffre cpt" style="--n:704" data-pre="" data-suf=""><b>704</b></dt><dd><small>références scientifiques extraites et filtrées via pipeline NLP</small></dd></div>
+      </dl>
+      <input type="checkbox" id="p2" class="vh plus"><label for="p2" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Pipeline automatisé.</b> Architecture d'un pipeline complet de collecte, filtrage et extraction textuelle (NLP) appliqué aux données de 45 bâtiments connectés.</li>
+        <li><b>Cartographie technique.</b> Structuration des métadonnées et modélisation des flux énergétiques pour l'aide à la décision et l'optimisation des consommations thermiques.</li>
+        <li><b>Visualisation &amp; Analyse.</b> Restitution claire des leviers de performance environnementale pour guider les investissements d'efficacité énergétique.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> Python, Data Pipeline, NLP, IoT, Smart Buildings.</p>
+    </div>
+  </article>
+
+  <article class="dossier">
+    <div class="g">
+      <h3><a href="https://github.com/Remynou/Projet-PyAdverseSearch" target="_blank" rel="noopener noreferrer">PyAdverseSearch — Exploration adverse</a></h3>
+      <p class="ctx">Université du Québec à Chicoutimi (UQAC). Librairie modulaire pour la prise de décision en environnement adverse incomplet.</p>
+      <dl class="met">
+        <div><dt class="chiffre">Minimax</dt><dd><small>implémentation rigoureuse avec élagage Alpha-Beta</small></dd></div>
+        <div><dt class="chiffre">Modulaire</dt><dd><small>architecture orientée objet conçue pour l'extensibilité</small></dd></div>
+      </dl>
+      <input type="checkbox" id="p3" class="vh plus"><label for="p3" class="plus-l"><span class="off">Voir le détail</span><span class="on">Replier</span></label>
+    </div>
+    <div class="detail">
+      <ul class="faits-l">
+        <li><b>Framework objet.</b> Conception d'une librairie Python modulaire et orientée objet pour la simulation et la résolution de stratégies en univers adverse incomplet.</li>
+        <li><b>Algorithmes heuristiques.</b> Implémentation et banc d'essai comparatif d'algorithmes de recherche dans les arbres et graphes décisionnels (Minimax, élagage Alpha-Beta).</li>
+        <li><b>Analyse de complexité.</b> Évaluation de la complexité temporelle et mémoire dans des environnements de jeux à information imparfaite.</li>
+      </ul>
+      <p class="pile"><b>Outils.</b> Python, Algorithmique avancée, Programmation Orientée Objet.</p>
+    </div>
+  </article>
+</div></section>
+
+<section id="parcours"><div class="col">
+  <h2>Parcours</h2>
+  <div class="par">
+    <div><h3>Expérience</h3><ul>
+      <li><time>2025 à aujourd'hui</time><div><b>Crédit Agricole, Roubaix</b><span>Data Engineer en alternance. Pipelines décisionnels ETL/ELT, modélisation Snowflake, tests fonctionnels et intégration continue CI/CD.</span></div></li>
+      <li><time>2024 à 2025</time><div><b>Tronics Microsystem, Crolles</b><span>IT Production Engineer en alternance. Applications C# / Blazor, administration SQL Server, traçabilité de fabrication MEMS.</span></div></li>
+      <li><time>2023</time><div><b>Becton Dickinson, Pont de Claix</b><span>Stagiaire Développeur Bases de Données. Conception et déploiement d'un outil de centralisation et de suivi qualité (VBA, SQL).</span></div></li>
+    </ul></div>
+    <div><h3>Formation</h3><ul>
+      <li><time>2025 à aujourd'hui</time><div><b>Master Data &amp; Intelligence Artificielle</b><span>École du Numérique, FGES, Université Catholique de Lille. Ingénierie des données, architectures cloud, machine learning, NLP.</span></div></li>
+      <li><time>2024 à 2025</time><div><b>Ingénieur en Data Engineering</b><span>Télécom Saint-Étienne. Architectures distribuées, Big Data, modélisation de données et pipelines distribués.</span></div></li>
+      <li><time>2023 à 2024</time><div><b>Baccalauréat en Informatique (Intelligence d'Affaires)</b><span>Université du Québec à Chicoutimi (UQAC - double diplôme). Systèmes décisionnels, bases de données avancées, algorithmique.</span></div></li>
+      <li><time>2021 à 2024</time><div><b>BUT Science des Données</b><span>Université Grenoble Alpes. Statistique décisionnelle, modélisation prédictive, fouille de données, programmation.</span></div></li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section id="contact" class="contact"><div class="col">
+  <h2>Écrivez-moi, <span class="ital">je réponds</span></h2>
+  <ul class="cl">
+    <li><a href="mailto:remy.rayane38@gmail.com"><span>Email</span><span>remy.rayane38@gmail.com</span></a></li>
+    <li><a href="https://www.linkedin.com/in/r%C3%A9my-rayane-57a71a252/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span>linkedin.com/in/rémy-rayane</span></a></li>
+    <li><a href="https://github.com/Remynou" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span>github.com/Remynou</span></a></li>
+    <li><a href="CV_Remy.pdf" target="_blank"><span>CV</span><span>PDF, deux pages (télécharger)</span></a></li>
+  </ul>
+  <footer><span>Rémy Rayane, 2026</span><span>Page sans cookie, sans script et sans mesure d’audience.</span></footer>
+</div></section>
+
+</body>
+</html>
